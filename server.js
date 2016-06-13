@@ -27,7 +27,7 @@ app.post('/checkschool-card',  urlencodedParser,function (req, res)
     {
     if(rows.length>0)
     {
-console.log(rows);
+//console.log(rows);
       res.status(200).json({'returnval': rows});
     }
     else
@@ -68,7 +68,7 @@ app.post('/login-card',  urlencodedParser,function (req, res)
 app.post('/getroute' ,  urlencodedParser,function (req, res)
 {
     var schoolx={"school_id":req.query.schol};
-    console.log(schoolx);
+    //console.log(schoolx);
       connection.query('select * from route where ?',[schoolx],
         function(err, rows)
         {
@@ -76,7 +76,7 @@ app.post('/getroute' ,  urlencodedParser,function (req, res)
     {
       if(rows.length>0)
       {
-        console.log(rows);
+        //console.log(rows);
       res.status(200).json({'returnval': rows});
       }
       else
