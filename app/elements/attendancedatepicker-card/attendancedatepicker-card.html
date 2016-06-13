@@ -9,7 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
-<link rel="import" href="../transport-service/transport-service.html">
+<link rel="import" href="../attendance-service/attendance-service.html">
 
 <dom-module id="attendancedatepicker-card">
   <template>
@@ -35,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </paper-dialog>
     </div>
     <dialog-page id="ID_Show_Dialog"></dialog-page>
-    <transport-service id="transportservice"></transport-service>
+    <attendance-service id="attservice"></attendance-service>
   </template>
   <script>
   (function() {
@@ -60,13 +60,7 @@ Polymer({
       var days=parseInt((dd1 - dd2) / (1000 * 60 * 60 * 24));
       this.showdate = moment(this.$.picker.date).format('L');
       //localStorage.setItem("localsess_curr_date",this.showdate);
-      this.$.transportservice.attendancereport(this.showdate);
-      //this.$.service.datepickinsta1(this.date);
-      //this.$.service.datepickinsta2(this.date);
-      //this.$.service.datepickinsta1cheque(this.date);
-      //this.$.service.datepickinsta2cheque(this.date);
-      //this.$.excelservice.pickdate(this.showdate);
-     // document.querySelector('feereports-card').showpapertab();
+      this.$.attservice.attendancereport(this.showdate);
     }
   },
   FnClear:function(){

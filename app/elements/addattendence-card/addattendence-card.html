@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../addattendance-item-card/addattendance-item-card.html">
+<link rel="import" href="../attendance-service/attendance-service.html">
 
 <dom-module id="addattendence-card">
   <template>
@@ -95,7 +96,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-button raised id="submitatten" on-click="click">Submit</paper-button>
       </div>
     </div>
-    <transport-service id="service"></transport-service>
+    <attendance-service id="service"></attendance-service>
   </template>
   <script>
   (function() {
@@ -108,7 +109,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'addattendence-card',
       ready:function(){
-        alert('hi');
+        //alert('hi');
+        this.$.service.getroute();
         this.$.headatt.hidden=true;
         this.$.submitatten.hidden=true;
         this.$.drop.hidden=false;
