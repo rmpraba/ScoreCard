@@ -248,13 +248,6 @@ paper-button{
 	margin-top: 2%;
 	margin-left: 46%;
 }
-.card{
-   @apply(--layout-horizontal);
-   @apply(--layout-center);
-   position: relative;
-   width: auto;
-   margin-left: 3%;
-}
 fieldset{
    margin: 0% 0% 0% 18%;
    width: 54%;
@@ -836,6 +829,5 @@ margin-top: 6%;
     @apply(--layout-horizontal-wrap);
     @apply(--layout-vertical-wrap);
 }
-
 
 </style>

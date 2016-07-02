@@ -12,17 +12,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="login-card">
 <style>
-  
+  body{
+    background-color: #ffffff;
+  }
+  .content{
+    width: 25%;
+    height: 360px !important;
+    text-align: center;
+    margin: 10% auto;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+  }
+  .content .field{
+    width: 50%;
+    margin: 0 auto;
+  }
+  .content .button{
+    margin-top: 5%; 
+  }
+  .button paper-button{
+    background-color: #363636;
+    color: #ffffff;
+  }
+  .card-img{
+    padding-top: 6% !important;
+  }
+  .school-name{
+    margin-left: 15%;
+  }
 </style>
 <template>
     <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="Fnenterkeylogin"></iron-a11y-keys>
     <div class="wholepage">
-    <div class="logindialog" style="background-color: #ffffff;">
-        <div class="card-img">
-            <img src="../../images/zeesouth.png" height="100px" width="90px"></img>
-        </div>
+    <div class="logindialog">
         <div class="content">
-         <div class="school-name">
+            <div class="card-img">
+                <img src="../../images/zeesouth.png" height="100px" width="90px"></img>
+            </div>
+            <div class="school-name">
                <paper-item center-justified flex value="Cheque" id="schoolname">{{schname}}</paper-item>
             </div>
             <div class="field">
@@ -46,19 +73,19 @@
       is: "login-card",
       ready:function()
       {
-       this.$.schoolname.hidden=true;
-       sessionStorage.setItem("pagestatus","1");
+        this.$.schoolname.hidden=true;
+        sessionStorage.setItem("pagestatus","1");
       },
       Fnlogin:function()
       {
         if(this.uname==""&&this.pass=="")
         {
-           this.$.username.validate();
-           this.$.password.validate();
+          this.$.username.validate();
+          this.$.password.validate();
         }
         else
         {
-           this.$.loginservice.logincheck(this.uname,this.pass);
+          this.$.loginservice.logincheck(this.uname,this.pass);
         }
       },
       Fncheckschool:function()
@@ -70,12 +97,12 @@
       {
         if(this.uname==""&&this.pass=="")
         {
-           this.$.username.validate();
-           this.$.password.validate();
+          this.$.username.validate();
+          this.$.password.validate();
         }
         else
         {
-           this.$.loginservice.logincheck(this.uname,this.pass);
+          this.$.loginservice.logincheck(this.uname,this.pass);
         }
       }
 
