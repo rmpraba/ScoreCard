@@ -8,9 +8,12 @@
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <link rel="import" href="../login-service/login-service.html">
-<link rel="stylesheet" type="text/css" href="../../styles/styles.css">
+<!-- <link rel="stylesheet" type="text/css" href="../../styles/styles.css"> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="login-card">
+<style>
+  
+</style>
 <template>
     <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="Fnenterkeylogin"></iron-a11y-keys>
     <div class="wholepage">
@@ -43,7 +46,7 @@
       is: "login-card",
       ready:function()
       {
-        this.$.schoolname.hidden=true;
+       this.$.schoolname.hidden=true;
        sessionStorage.setItem("pagestatus","1");
       },
       Fnlogin:function()
@@ -55,7 +58,7 @@
         }
         else
         {
-            this.$.loginservice.logincheck(this.uname,this.pass);
+           this.$.loginservice.logincheck(this.uname,this.pass);
         }
       },
       Fncheckschool:function()
@@ -72,7 +75,7 @@
         }
         else
         {
-            this.$.loginservice.logincheck(this.uname,this.pass);
+           this.$.loginservice.logincheck(this.uname,this.pass);
         }
       }
 

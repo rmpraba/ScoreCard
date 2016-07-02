@@ -1,0 +1,122 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../assesment-service/assesment-service.html">
+<link rel="import" href="../assesment-sheet-card/assesment-sheet-card.html">
+<dom-module id="assesment-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    
+    .card{
+        @apply(--layout-vertical);
+    }
+
+    .drop{        
+        @apply(--layout-horizontal);
+        margin-top: 5%;
+        margin-left: 10%;
+    }
+    paper-dropdown-menu{
+      width: 15%;
+      margin-left: 3%;
+    }
+    </style>
+    <div class='card'>
+     
+     <div class='drop'>
+      
+          <paper-dropdown-menu id="grade" label="Select Grade" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content"  on-iron-select="FnSelectGrade"  attr-for-selected="value" required>     
+              <template is="dom-repeat" items="{{gradearr}}">
+                <paper-item value="{{item.grade_name}}">{{item.grade_name}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+          <paper-dropdown-menu id="section" label="Select Section" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content"  on-iron-select="FnSelectSection"  attr-for-selected="value" required>
+              <template is="dom-repeat" items="{{sectionarr}}">
+                <paper-item value="{{item.section}}">{{item.section}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+          <paper-dropdown-menu id="subject" label="Select Subject" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content"  on-iron-select="FnSelectSubject"  attr-for-selected="value" required>    
+              <template is="dom-repeat" items="{{subjectarr}}">
+                <paper-item value="{{item.subject_name}}">{{item.subject_name}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>      
+          <paper-dropdown-menu id="assessment" label="Select Assesment" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content"  on-iron-select="FnSelectAssesment"  attr-for-selected="value" required>  
+              <template is="dom-repeat" items="{{assesmentarr}}">
+                <paper-item value="{{item.assesment_cyclename}}">{{item.assesment_cyclename}}</paper-item>               
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+
+     </div>
+
+     <div>
+       <assesment-sheet-card></assesment-sheet-card>
+     </div>
+
+    </div>
+    <assesment-service id="assesmentservice"></assesment-service>
+  </template>
+  <script>
+  (function() {
+    var flag=0;
+    'use strict';
+    var gradename,section,term,assesment,subject;
+    Polymer({
+      is: 'assesment-card',
+
+      input1:function(){
+
+      },
+      input2:function(){
+
+      },
+      input3:function(){
+
+      },
+      FnSelectGrade:function(e){
+        gradename = e.target.selectedItem.textContent.trim();
+        this.$.assesmentservice.callSectionService(gradename);
+        this.$.assesmentservice.callSubjectService(localStorage.getItem('curr_sess_loggedassesmenttype'),
+        localStorage.getItem('curr_sess_termname'),gradename); 
+        this.$.assesmentservice.callAssesmentService(localStorage.getItem('curr_sess_loggedassesmenttype'),
+        localStorage.getItem('curr_sess_termname'),gradename);
+      },
+      FnSelectSection:function(e){
+        section = e.target.selectedItem.textContent.trim();
+        if(flag==1)
+          this.callService();
+      },
+      FnSelectTerm:function(e){
+        term = e.target.selectedItem.textContent.trim();
+      },
+      FnSelectAssesment:function(e){
+        flag=1;
+        assesment = e.target.selectedItem.textContent.trim();
+        this.callService();
+      },
+      FnSelectSubject:function(e){
+        subject = e.target.selectedItem.textContent.trim();        
+      },
+      callService:function(){
+        if(subject=="English"){          
+          this.$.assesmentservice.callFetchStudentInfo(gradename,section);
+          document.querySelector('assesment-sheet-card').setPage('cceenglishonetofourcard');
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

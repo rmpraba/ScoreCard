@@ -41,27 +41,17 @@
 
   <script>
   (function() {
-    var pzone_fee="";
-       var dzone_fee="";
-       var fee="";
-       var pickpoint="";
-       var droppoint="";
-    var studid="";
-    var disid="";
-    var username="";
-    var school="";
-    var getpassword="";
+   
     Polymer({
       is: "login-service",
 
      addressResponse:function(e)
       {
         var addr=e.detail.response.address;
-        sessionStorage.setItem("addrinfo",addr);
-        //alert(JSON.stringify(e.detail.response.address));
+        sessionStorage.setItem("addrinfo",addr);       
       },
 
-       checkschool:function(uname)
+      checkschool:function(uname)
       {
         username=uname;
         this.checkschoolurl=sessionStorage.getItem("addrinfo")+"/checkschool-card";
@@ -72,7 +62,6 @@
       },
       checkschoolResponse:function(e)
       {
-
         var schol=e.detail.response.returnval[0].name;
         document.querySelector('login-card').schname=schol;
       },
@@ -92,30 +81,26 @@
      //loginResponse from the loginajax
       loginResponse:function(e)
       {
-
         var role=e.detail.response.returnval[0].role_name;
-        school=e.detail.response.returnval[0].school;
+        var school=e.detail.response.returnval[0].school;
         var name=e.detail.response.returnval[0].name;
         var address=e.detail.response.returnval[0].addr;
-        sessionStorage.setItem("sch",school);
-        sessionStorage.setItem("schoolname",name);
-        sessionStorage.setItem("schooladdr",address);
-        //alert('School ID is '+name);
-       if(role=="Attender")
+        sessionStorage.setItem("curr_sess_loggedrole",role);
+        sessionStorage.setItem("curr_sess_loggedschoolid",school);
+        sessionStorage.setItem("curr_sess_loggedschoolname",name);
+        sessionStorage.setItem("curr_sess_loggedschooladdress",address);
+        // alert(role+" "+school+" "+name+" "+address);
+      if(role=="Teacher")
       {
-        sessionStorage.setItem("userinfo",role);
-        document.querySelector('attendance-app').setPage("applist");
-        document.querySelector('app-list').setPage("addattendence","Attendance");
-      }
-     
+        document.querySelector('app-card').setPage('homepage',''); 
+        document.querySelector('home-page').setPage('teacherhomecard',''); 
+      }     
       else 
       {
         alert('Invalid UserName or Password');
       }
       }
-
-       });
-      
+      });      
       
       })();
   </script>

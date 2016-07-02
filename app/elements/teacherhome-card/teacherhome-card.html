@@ -1,0 +1,67 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<link rel="import" href="../assesment-service/assesment-service.html">
+<link rel="import" href="..\..\bower_components/neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="..\..\bower_components/neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu-light/paper-dropdown-menu-light.html">
+
+<dom-module id="teacherhome-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-button{
+        margin-left: 40%;
+        margin-top: 10%;
+      }
+    </style>
+
+    <div class="card">    
+     <paper-button on-click="FnSelectTermType" no ink><img src="../../images/img1.gif" height="180px" width="150px"></paper-button>
+    </div>
+
+    <div class="dialog">      
+      <paper-dialog id="dialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+          <paper-dropdown-menu id="term" label="Select Term" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content" on-iron-select="FnSelectTerm" attr-for-selected="value" selected="{{selectterm}}">
+              <template is="dom-repeat" items="{{termarr}}">
+                <paper-item value="{{item.term_name}}">{{item.term_name}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+      </paper-dialog>
+    </div>
+
+    <assesment-service id="assesmentservice"></assesment-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'teacherhome-card',
+      FnSelectTermType:function(){
+        localStorage.setItem('curr_sess_loggedassesmenttype','Term');
+        this.$.assesmentservice.callTermService("Term");             
+      },
+      FnToggle:function(){
+        this.$.dialog.toggle();
+      },
+      FnSelectTerm:function(e){
+        var termname = e.target.selectedItem.textContent.trim();  
+        localStorage.setItem('curr_sess_termname',termname);      
+        this.$.assesmentservice.callGradeService();   
+        document.querySelector('app-card').setPage('homepage','');
+        document.querySelector('home-page').setPage('assesmentcard','');
+      }
+    });
+  })();
+  </script>
+</dom-module>

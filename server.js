@@ -5,10 +5,10 @@ var express    = require("express");
    host     : 'localhost',
    user     : 'root',
    password : 'admin',
-   database : 'transport'
+   database : 'scorecarddb'
  });
 var bodyParser = require('body-parser');
- var app = express();
+var app = express();
 
 app.use(express.static('app'));
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -16,153 +16,192 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.get('/', function (req, res) {
    res.sendFile("app/index.html" );
 })
+
 app.post('/checkschool-card',  urlencodedParser,function (req, res)
 {
-  var id={"id":req.query.username};
-
-       connection.query('SELECT name from md_school where id=(select school_id from employee where ?) ',[id],
-        function(err, rows)
-        {
+    var id={"id":req.query.username};
+    connection.query('SELECT name from md_school where id=(select school_id from md_employee where ?) ',[id],
+    function(err, rows)
+    {
     if(!err)
     {
     if(rows.length>0)
     {
-//console.log(rows);
       res.status(200).json({'returnval': rows});
     }
     else
     {
-
       res.status(200).json({'returnval': 'invalid'});
     }
   }
 });
-  });
-
+});
 
 //select the username and password from login table
 app.post('/login-card',  urlencodedParser,function (req, res)
 {
   var id={"id":req.query.username};
   var username={"id":req.query.username};
-    var password={"password":req.query.password};
-       connection.query('SELECT role_name,(select school_id from employee where ?) as school,(select name from md_school where id=school) as name ,(select address from md_school where id=school) as addr from role where id=(select role_id from employee where ? and ?) ',[id,username,password],
-        function(err, rows)
-        {
+  var password={"password":req.query.password};
+  connection.query('SELECT role_name,(select school_id from md_employee where ?) as school,(select name from md_school where id=school) as name ,(select address from md_school where id=school) as addr from md_role where id=(select role_id from md_employee where ? and ?) ',[id,username,password],
+    function(err, rows)
+    {
     if(!err)
     {
     if(rows.length>0)
     {
-
       res.status(200).json({'returnval': rows});
     }
     else
     {
-
       res.status(200).json({'returnval': 'invalid'});
     }
-  }
-});
+    }
   });
+});
 
-app.post('/getroute' ,  urlencodedParser,function (req, res)
+//fetching grade info
+app.post('/term-service',  urlencodedParser,function (req, res)
 {
-    var schoolx={"school_id":req.query.schol};
-    //console.log(schoolx);
-      connection.query('select * from route where ?',[schoolx],
-        function(err, rows)
-        {
-        if(!err)
+  var qur="select term_name from md_term where term_id in(select term_id from mp_assesment_term where assesment_id=(select assesment_id from md_assesment_type where assesment_name='"+req.query.termtype+"'))";
+
+  connection.query(qur,
+    function(err, rows)
     {
-      if(rows.length>0)
-      {
-        //console.log(rows);
+    if(!err)
+    {
+    if(rows.length>0)
+    {
       res.status(200).json({'returnval': rows});
-      }
-      else
-      {
-      res.status(200).json({'returnval': 'invalid'});
-      }
     }
     else
     {
-      console.log('No data Fetched'+err);
+      res.status(200).json({'returnval': 'invalid'});
     }
-});
+    }
+    else
+      console.log(err);
   });
+});
 
-app.post('/getstudentsforattendancepickup',  urlencodedParser,function (req, res){
-   var tripid={"school_type":req.query.tripid};
-   var schoolx={"school_id":req.query.schol};
-     var route_id={"pickup_route_id":req.query.routeid};
-   //console.log(req.query.routeid);
-   var query="SELECT p.student_id,(select student_name from student_details where id=p.student_id and school_id ='"+req.query.schol+"')as name from student_point p where school_id ='"+req.query.schol+"' and pickup_route_id = (select id from route where route_name = '"+req.query.routeid+"' and school_id ='"+req.query.schol+"') and school_type ='"+req.query.tripid+"'";
-     console.log(query);
-     connection.query(query,
-     function(err, rows){
-     if(!err){
-       if(rows.length>0){
-         //console.log(rows);
-         res.status(200).json({'returnval': rows});
-       } else {
-         console.log(err);
-         res.status(200).json({'returnval': 'invalid'});
-       }
-     } else {
-       console.log(err);
-     }
-   });
- });
- 
- app.post('/getstudentsforattendancedrop',  urlencodedParser,function (req, res){
-   var tripid={"school_type":req.query.tripid};
-   var schoolx={"school_id":req.query.schol};
-     var route_id={"drop_route_id":req.query.routeid};
-   console.log(req.query.routeid);
-   var query="SELECT p.student_id,(select student_name from student_details where id=p.student_id and school_id ='"+req.query.schol+"')as name from student_point p where school_id ='"+req.query.schol+"' and drop_route_id = (select id from route where route_name = '"+req.query.routeid+"' and school_id ='"+req.query.schol+"') and school_type ='"+req.query.tripid+"'";
-   connection.query(query,
-     function(err, rows){
-     if(!err){
-       if(rows.length>0){
-         //console.log(rows);
-         res.status(200).json({'returnval': rows});
-       } else {
-         console.log(err);
-         res.status(200).json({'returnval': 'invalid'});
-       }
-     } else {
-       console.log(err);
-     }
-   });
- });
-app.post('/attsubmiturl',  urlencodedParser,function (req, res){
-   var collection={"school_id":req.query.schol,"student_id":req.query.studentid,"student_name":req.query.student_name,"route_id":req.query.routeid,"mode_of_travel":req.query.pickupordrop,"trip":req.query.trip,"att_date":req.query.date,"status":req.query.status};
-   //console.log(collection);
-   connection.query('insert into attendance set ?',[collection],
-     function(err, rows){
- 
-       if(!err)
-       {
-         res.status(200).json({'returnval': 'success'});
-       }
-       else
-       {
-         console.log(err);
-         res.status(200).json({'returnval': 'invalid'});
-       }
-     });
- });
+//fetching grade info
+app.post('/grade-service',  urlencodedParser,function (req, res)
+{
+  var qur="select grade_name from md_grade";
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {
+    if(rows.length>0)
+    {
+      res.status(200).json({'returnval': rows});
+    }
+    else
+    {
+      res.status(200).json({'returnval': 'invalid'});
+    }
+    }
+    else
+      console.log(err);
+  });
+});
 
+//fetching section info
+app.post('/section-service',  urlencodedParser,function (req, res)
+{
+  var qur="select section from md_class_section where school_id='"+req.query.schoolid+"' and class='"+req.query.gradename+"'";
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {
+    if(rows.length>0)
+    {
+      res.status(200).json({'returnval': rows});
+    }
+    else
+    {
+      res.status(200).json({'returnval': 'invalid'});
+    }
+    }
+    else
+      console.log(err);
+  });
+});
 
+//fetching section info
+app.post('/subject-service',  urlencodedParser,function (req, res)
+{
+  var qur="select subject_name from md_subject where subject_id in(select subject_id from mp_grade_subject where term_id=(select assesment_id from md_assesment_type where assesment_name='"+req.query.termtype+"') and grade_id=(select grade_id from md_grade where grade_name='"+req.query.gradename+"'))";
+  // console.log(qur);
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {
+    if(rows.length>0)
+    {
+      res.status(200).json({'returnval': rows});
+    }
+    else
+    {
+      res.status(200).json({'returnval': 'invalid'});
+    }
+    }
+    else
+      console.log(err);
+  });
+});
+//fetching teachers assesment card info
+app.post('/assesment-service',  urlencodedParser,function (req, res)
+{
+  var qur="select assesment_cyclename from md_assesment_cycle where assesment_cycleid in(select assesment_cycleid from mp_assesment_term_cycle where assesment_id=(select assesment_id from md_assesment_type where assesment_name='"+req.query.termtype+"') and term_id=(select term_id from md_term where term_name='"+req.query.termname+"') and grade_id=(select grade_id from md_grade where grade_name='"+req.query.gradename+"'))";
+  // console.log(qur);
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {
+    if(rows.length>0)
+    {
+      res.status(200).json({'returnval': rows});
+    }
+    else
+    {
+      res.status(200).json({'returnval': 'invalid'});
+    }
+    }
+    else
+      console.log(err);
+  });
+});
 
+//fetching student info
+app.post('/fetchstudent-service',  urlencodedParser,function (req, res)
+{
+  var qur="select school_id,student_name,class_id from md_student where class_id=(select id from md_class_section where class='"+req.query.gradename+"' and section='"+req.query.section+"' and school_id='"+req.query.schoolid+"') and school_id='"+req.query.schoolid+"'";
+  // console.log(qur);
+  connection.query(qur,
+    function(err, rows)
+    {
+    if(!err)
+    {
+    if(rows.length>0)
+    {
+      res.status(200).json({'returnval': rows});
+    }
+    else
+    {
+      res.status(200).json({'returnval': 'invalid'});
+    }
+    }
+    else
+      console.log(err);
+  });
+});
 
-
-
-
-function setvalue(){
-  console.log("calling setvalue.....");
-}
-var server = app.listen(8083, function () {
+var server = app.listen(5000, function () {
 var host = server.address().address
 var port = server.address().port
 console.log("Example app listening at http://%s:%s", host, port)
