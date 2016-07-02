@@ -2,6 +2,12 @@
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/cc-maths-onetofour-card/cc-maths-onetofour-card.html">
+<link rel="import" href="../../bower_components/cc-evs-onetofour-card/cc-evs-onetofour-card.html">
+<link rel="import" href="../../bower_components/cc-computer-onetofour-card/cc-computer-onetofour-card.html">
+<link rel="import" href="../../bower_components/cc-computer-onetofour-item-card/cc-computer-onetofour-item-card.html">
+
+
 <link rel="import" href="../home-page/home-page.html">
 <!-- <link rel="stylesheet" type="text/css" href="../../styles/styles.css"> -->
   <dom-module id="app-card">
@@ -27,6 +33,19 @@
         <section data-category="homepage">
           <home-page></home-page>
         </section>
+         </section>
+        <section data-category="cc-maths-onetofour-card">
+          <cc-maths-onetofour-card></cc-maths-onetofour-card>
+        </section>
+        <section data-category="cc-evs-onetofour-card">
+          <cc-evs-onetofour-card></cc-evs-onetofour-card>
+        </section>
+        <section data-category="cc-evs-onetofour-item-card">
+          <cc-evs-onetofour-item-card></cc-evs-onetofour-item-card>
+        </section>
+        <section data-category="cc-computer-onetofour-card">
+          <cc-computer-onetofour-card></cc-computer-onetofour-card>
+        </section>
       </iron-pages>
     </div>
 
@@ -36,7 +55,7 @@
   Polymer({
   is: "app-card",
   ready: function() {
-   this.page='logincard';   
+   this.page='cc-evs-onetofour-item-card';   
    var name=sessionStorage.getItem("userinfo");
    var currpage=localStorage.getItem("curr_sess_page");
    if(name=="Transport Admin")  {
