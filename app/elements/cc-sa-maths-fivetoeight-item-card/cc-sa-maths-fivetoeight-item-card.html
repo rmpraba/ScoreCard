@@ -1,0 +1,117 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+--> 
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
+<link rel="import" href="..\..\bower_components/paper-item/paper-item.html">
+
+
+
+<dom-module id="cc-sa-maths-fivetoeight-item-card">
+  <template>
+    <style> 
+      :host {
+        display: block;
+      }
+      table{
+        border-collapse: collapse;
+        width: 100%;
+      }
+      #p1{
+        width: 48px;
+      }
+      #p2{
+        width: 49px;
+      }
+      #p3{
+        width: 50.5px;
+      }
+      .pi1{
+        width: 57px;
+      }
+      .pi2{
+        width: 72px;
+      }
+      .pi3{
+        width: 11px;
+      }
+      paper-input{
+        text-align: center;
+      }
+    </style>
+    <div>
+       <table border="1">
+        <tr><td hidden></td>
+        <td><paper-input value="{{PA11}}" id="p1" on-change="FnPronouncitaion"></paper-input></td><td><paper-input value="{{PA12}}" id="p2" on-change="FnPronouncitaion"></paper-input></td><td><paper-input value="{{PA13}}" id="p3" on-change="FnPronouncitaion"></paper-input></td><td><paper-item class="pi1">{{PI11}}</paper-item></td><td><paper-item class="pi2">{{PI12}}</paper-item></td><td><paper-item class="pi3">{{PI13}}</paper-item></td>
+        <td><paper-input value="{{PA21}}" id="p1" on-change="FnFluency"></paper-input></td><td><paper-input value="{{PA22}}" id="p2" on-change="FnFluency"></paper-input></td><td><paper-input value="{{PA23}}" id="p3" on-change="FnFluency"></paper-input></td><td><paper-item class="pi1">{{PI21}}</paper-item></td><td><paper-item class="pi2">{{PI22}}</paper-item></td><td><paper-item class="pi3">{{PI23}}</paper-item></td>
+        <td><paper-input value="{{PA31}}" id="p1" on-change="FnComprehension"></paper-input></td><td><paper-input value="{{PA32}}" id="p2" on-change="FnComprehension"></paper-input></td><td><paper-input value="{{PA33}}" id="p3" on-change="FnComprehension"></paper-input></td><td><paper-item class="pi1">{{PI31}}</paper-item></td><td><paper-item class="pi2">{{PI32}}</paper-item></td><td><paper-item class="pi3">{{PI33}}</paper-item></td>
+
+        <td><paper-input value="{{PA41}}" id="p1"></paper-input></td><td><paper-input value="{{PA42}}" id="p2"></paper-input></td><td><paper-input value="{{PA43}}" id="p3"></paper-input></td><td><paper-item class="pi1"></paper-item></td><td><paper-item class="pi2"></paper-item></td><td><paper-item class="pi3"></paper-item></td>
+        <td><paper-input value="{{PA51}}" id="p1"></paper-input></td><td><paper-input value="{{PA52}}" id="p2"></paper-input></td><td><paper-input value="{{PA53}}" id="p3"></paper-input></td><td><paper-item class="pi1"></paper-item></td><td><paper-item class="pi2"></paper-item></td><td><paper-item class="pi3"></paper-item></td>
+        <td><paper-input value="{{PA61}}" id="p1"></paper-input></td><td><paper-input value="{{PA62}}" id="p2"></paper-input></td><td><paper-input value="{{PA63}}" id="p3"></paper-input></td><td><paper-item class="pi1"></paper-item></td><td><paper-item class="pi2"></paper-item></td><td><paper-item class="pi3"></paper-item></td>
+        <td><paper-input value="{{PA71}}" id="p1"></paper-input></td><td><paper-input value="{{PA72}}" id="p2"></paper-input></td><td><paper-input value="{{PA73}}" id="p3"></paper-input></td><td><paper-item class="pi1"></paper-item></td><td><paper-item class="pi2"></paper-item></td><td><paper-item class="pi3"></paper-item></td>
+
+        <td><paper-input value="{{PA81}}" id="p1"></paper-input></td><td><paper-input value="{{PA82}}" id="p2"></paper-input></td><td><paper-input value="{{PA83}}" id="p3"></paper-input></td><td><paper-item class="pi1"></paper-item></td><td><paper-item class="pi2"></paper-item></td><td><paper-item class="pi3"></paper-item></td>
+        <td><paper-input value="{{PA91}}" id="p1"></paper-input></td><td><paper-input value="{{PA92}}" id="p2"></paper-input></td><td><paper-input value="{{PA93}}" id="p3"></paper-input></td><td><paper-item class="pi1"></paper-item></td><td><paper-item class="pi2"></paper-item></td><td><paper-item class="pi3"></paper-item></td>
+
+        <td><paper-input value="{{PA101}}" id="p1"></paper-input></td><td><paper-input value="{{PA102}}" id="p2"></paper-input></td><td><paper-input value="{{PA103}}" id="p3"></paper-input></td><td><paper-item class="pi1"></paper-item></td><td><paper-item class="pi2"></paper-item></td><td><paper-item class="pi3"></paper-item></td>
+
+        <td><paper-input value="{{PA111}}" id="p1"></paper-input></td><td><paper-input value="{{PA112}}" id="p2"></paper-input></td><td><paper-input value="{{PA113}}" id="p3"></paper-input></td><td><paper-item class="pi1"></paper-item></td><td><paper-item class="pi2"></paper-item></td><td><paper-item class="pi3"></paper-item></td>
+        </tr>
+      </table>
+
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'cc-sa-maths-fivetoeight-item-card',
+
+      Polymer({
+      is: 'cce-english-onetofour-item-card',
+      ready:function(){
+        this.PA11=0;
+        this.PA12=0;
+        this.PA13=0;
+        this.PA21=0;
+        this.PA22=0;
+        this.PA23=0;
+        this.PA31=0;
+        this.PA32=0;
+        this.PA33=0;
+      },
+      FnPronouncitaion:function(e){               
+        this.PI11=(parseFloat(this.PA11)+parseFloat(this.PA12)+parseFloat(this.PA13)).toFixed(2);
+        if(parseFloat(this.PA11)>0&&parseFloat(this.PA12)>0&&parseFloat(this.PA13)>0){          
+          this.PI12=(parseFloat(this.PI11)/3).toFixed(2);
+          if(parseFloat(this.PI12)==10)
+            this.PI13="A+";
+          else if(parseFloat(this.PI12)>9)
+            this.PI13="A";
+          else if(parseFloat(this.PI12)>8)
+            this.PI13="B";
+          else if(parseFloat(this.PI12)>7)
+            this.PI13="C";
+          else if(parseFloat(this.PI12)<7)
+            this.PI13="D";
+        }
+      },
+      FnFluency:function(e){               
+        this.PI21=parseInt(this.PA21)+parseInt(this.PA22)+parseInt(this.PA23);
+      },
+      FnComprehension:function(e){               
+        this.PI31=parseInt(this.PA31)+parseInt(this.PA32)+parseInt(this.PA33);
+      }    
+    });
+  })();
+  </script>
+</dom-module>
