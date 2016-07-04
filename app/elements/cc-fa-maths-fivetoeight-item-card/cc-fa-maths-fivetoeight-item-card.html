@@ -6,20 +6,21 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
+--> 
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
 <link rel="import" href="..\..\bower_components/paper-item/paper-item.html">
 
 
-<dom-module id="cc-computer-onetofour-item-card">
+
+<dom-module id="cc-fa-maths-fivetoeight-item-card">
   <template>
-    <style>      
+    <style> 
       :host {
         display: block;
       }
-        table{
+      table{
         border-collapse: collapse;
         width: 100%;
       }
@@ -65,6 +66,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <td><paper-input value="{{PA111}}" id="p1"></paper-input></td><td><paper-input value="{{PA112}}" id="p2"></paper-input></td><td><paper-input value="{{PA113}}" id="p3"></paper-input></td><td><paper-item class="pi1"></paper-item></td><td><paper-item class="pi2"></paper-item></td><td><paper-item class="pi3"></paper-item></td>
         </tr>
       </table>
+
     </div>
   </template>
   <script>
@@ -72,8 +74,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     'use strict';
 
     Polymer({
-      is: 'cc-computer-onetofour-item-card',
- Polymer({
+      is: 'cc-fa-maths-fivetoeight-item-card',
+
+      Polymer({
       is: 'cce-english-onetofour-item-card',
       ready:function(){
         this.PA11=0;

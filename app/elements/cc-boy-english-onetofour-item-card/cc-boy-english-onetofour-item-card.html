@@ -13,13 +13,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="..\..\bower_components/paper-item/paper-item.html">
 
 
-<dom-module id="cc-computer-onetofour-item-card">
+<dom-module id="cc-boy-english-onetofour-item-card">
   <template>
-    <style>      
+    <style>
       :host {
         display: block;
       }
-        table{
+      table{
         border-collapse: collapse;
         width: 100%;
       }
@@ -45,8 +45,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-align: center;
       }
     </style>
-    <div>
-       <table border="1">
+    <div><table border="1">
         <tr><td hidden></td>
         <td><paper-input value="{{PA11}}" id="p1" on-change="FnPronouncitaion"></paper-input></td><td><paper-input value="{{PA12}}" id="p2" on-change="FnPronouncitaion"></paper-input></td><td><paper-input value="{{PA13}}" id="p3" on-change="FnPronouncitaion"></paper-input></td><td><paper-item class="pi1">{{PI11}}</paper-item></td><td><paper-item class="pi2">{{PI12}}</paper-item></td><td><paper-item class="pi3">{{PI13}}</paper-item></td>
         <td><paper-input value="{{PA21}}" id="p1" on-change="FnFluency"></paper-input></td><td><paper-input value="{{PA22}}" id="p2" on-change="FnFluency"></paper-input></td><td><paper-input value="{{PA23}}" id="p3" on-change="FnFluency"></paper-input></td><td><paper-item class="pi1">{{PI21}}</paper-item></td><td><paper-item class="pi2">{{PI22}}</paper-item></td><td><paper-item class="pi3">{{PI23}}</paper-item></td>
@@ -65,15 +64,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <td><paper-input value="{{PA111}}" id="p1"></paper-input></td><td><paper-input value="{{PA112}}" id="p2"></paper-input></td><td><paper-input value="{{PA113}}" id="p3"></paper-input></td><td><paper-item class="pi1"></paper-item></td><td><paper-item class="pi2"></paper-item></td><td><paper-item class="pi3"></paper-item></td>
         </tr>
       </table>
-    </div>
+      </div>
   </template>
   <script>
   (function() {
     'use strict';
 
     Polymer({
-      is: 'cc-computer-onetofour-item-card',
- Polymer({
+      is: 'cc-boy-english-onetofour-item-card',
+
+     Polymer({
       is: 'cce-english-onetofour-item-card',
       ready:function(){
         this.PA11=0;

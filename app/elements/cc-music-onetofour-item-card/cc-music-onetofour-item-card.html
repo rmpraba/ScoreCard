@@ -13,13 +13,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="..\..\bower_components/paper-item/paper-item.html">
 
 
-<dom-module id="cc-computer-onetofour-item-card">
+<dom-module id="cc-music-onetofour-item-card">
   <template>
-    <style>      
+    <style>
       :host {
         display: block;
       }
-        table{
+      table{
         border-collapse: collapse;
         width: 100%;
       }
@@ -45,7 +45,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-align: center;
       }
     </style>
-    <div>
+   <div>
        <table border="1">
         <tr><td hidden></td>
         <td><paper-input value="{{PA11}}" id="p1" on-change="FnPronouncitaion"></paper-input></td><td><paper-input value="{{PA12}}" id="p2" on-change="FnPronouncitaion"></paper-input></td><td><paper-input value="{{PA13}}" id="p3" on-change="FnPronouncitaion"></paper-input></td><td><paper-item class="pi1">{{PI11}}</paper-item></td><td><paper-item class="pi2">{{PI12}}</paper-item></td><td><paper-item class="pi3">{{PI13}}</paper-item></td>
@@ -72,7 +72,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     'use strict';
 
     Polymer({
-      is: 'cc-computer-onetofour-item-card',
+      is: 'cc-music-onetofour-item-card',
+  
  Polymer({
       is: 'cce-english-onetofour-item-card',
       ready:function(){

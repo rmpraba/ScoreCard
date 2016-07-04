@@ -9,15 +9,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
-<link rel="import" href="../cc-maths-onetofour-item-card/cc-maths-onetofour-item-card.html">
+<link rel="import" href="..\..\bower_components/cc-dance-onetofour-item-card/cc-dance-onetofour-item-card.html">
 
-<dom-module id="cc-maths-onetofour-card">
+
+
+
+<dom-module id="cc-dance-onetofour-card">
   <template>
     <style>
       :host {
         display: block;
       }
-       table{
+        table{
           width: 100%;
           border-collapse: collapse;
           margin-left: 1%;
@@ -26,18 +29,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 30%;
           }
     </style>
-   <div class="card">
-    <table border="1">
+    <div>
+   <table border="1">
       <tr><th>Sl.No</th><th>Student's Name</th>
-      <th colspan="18">Concept</th>
+     <!--  <th colspan="18">Concept</th>
       <th colspan="24">Activity/Project</th>
       <th colspan="12">MentalAbility</th>
       <th colspan="6">TableActivity</th>
-      <th colspan="6">WrittenWork</th>
+      <th colspan="6">WrittenWork</th> -->
       </tr>
       <tr><th></th><th></th>
 
-      <th colspan="3">Pronounciation(30)</th><th>Total(30)</th><th>Total reduced to 10</th><th>Grade</th>
+     <!--  <th colspan="3">Pronounciation(30)</th><th>Total(30)</th><th>Total reduced to 10</th><th>Grade</th>
       <th colspan="3">Fluency(30)</th><th>Total(30)</th><th>Total reduced to 10</th><th>Grade</th>
       <th colspan="3">Comprehension(30)</th><th>Total(30)</th><th>Total reduced to 10</th><th>Grade</th>
 
@@ -48,15 +51,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <th colspan="3">Conversation(30)</th><th>Total(30)</th><th>Total reduced to 10</th><th>Grade</th>
       <th colspan="3">Recitation(30)</th><th>Total(30)</th><th>Total reduced to 10</th><th>Grade</th>
+ -->
 
-      <th colspan="3">Comprehension(30)</th><th>Total(30)</th><th>Total reduced to 10</th><th>Grade</th>
-
-      <th colspan="3">Activity(30)</th><th>Total(30)</th><th>Total reduced to 10</th><th>Grade</th>
-
-      </tr>
-
+      
+       <th colspan="3">Interest(10)</th><th>Grade</th><th></th>
+       <th colspan="3">Rhythm(10)</th><th>Grade</th><th></th>
+       <th colspan="3">Grace(10)</th><th>Grade</th><th></th>
+       
       <tr><th></th><th></th>
-
+<!-- 
       <th>A1(10)</th><th>A2(10)</th><th>A3(10)</th><th>(A1+A2+A3)</th><th>(A1+A2+A3)/3</th><th></th>
       <th>A1(10)</th><th>A2(10)</th><th>A3(10)</th><th>(A1+A2+A3)</th><th>(A1+A2+A3)/3</th><th></th>
       <th>A1(10)</th><th>A2(10)</th><th>A3(10)</th><th>(A1+A2+A3)</th><th>(A1+A2+A3)/3</th><th></th>
@@ -68,17 +71,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <th>A1(10)</th><th>A2(10)</th><th>A3(10)</th><th>(A1+A2+A3)</th><th>(A1+A2+A3)/3</th><th></th>
       <th>A1(10)</th><th>A2(10)</th><th>A3(10)</th><th>(A1+A2+A3)</th><th>(A1+A2+A3)/3</th><th></th>
-
-      <th>A1(10)</th><th>A2(10)</th><th>A3(10)</th><th>(A1+A2+A3)</th><th>(A1+A2+A3)/3</th><th></th>
-
-      <th>A1(10)</th><th>A2(10)</th><th>A3(10)</th><th>(A1+A2+A3)</th><th>(A1+A2+A3)/3</th><th></th>
-
+ -->
+      <th colspan="3">A1(10)</th><th></th><th></th></th>
+      <th colspan="3">A1(10)</th><th></th><th></th></th>
+      <th colspan="3">A1(10)</th><th></th><th></th></th>
+     
       </tr>
 
       <template is="dom-repeat" items="{{studarr}}">
       <tr>
         <td>{{item.serialno}}</td><td>{{item.student_name}}</td>
-        <td colspan="66"><cc-maths-onetofour-item-card></cc-maths-onetofour-item-card></td>
+        <td colspan="66"><cc-dance-onetofour-item-card></cc-dance-onetofour-item-card></td>
 
         <!--<td></td><td></td><td></td><td></td><td></td><td></td>
         <td></td><td></td><td></td><td></td><td></td><td></td>
@@ -96,27 +99,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <td></td><td></td><td></td><td></td><td></td><td></td>-->
 
-      </tr>
+       </tr>
       </template>
 
     </table>      
     </div>
-
-
-
-
   </template>
   <script>
   (function() {
     'use strict';
 
     Polymer({
-      is: 'cc-maths-onetofour-card',
+      is: 'cc-dance-onetofour-card',
 
       properties: {
         foo: {
           type: String,
-          value: 'cc-maths-onetofour-card',
+          value: 'cc-dance-onetofour-card',
           notify: true
         }
       }

@@ -5,7 +5,11 @@
 <link rel="import" href="../../bower_components/cc-maths-onetofour-card/cc-maths-onetofour-card.html">
 <link rel="import" href="../../bower_components/cc-evs-onetofour-card/cc-evs-onetofour-card.html">
 <link rel="import" href="../../bower_components/cc-computer-onetofour-card/cc-computer-onetofour-card.html">
-<link rel="import" href="../../bower_components/cc-computer-onetofour-item-card/cc-computer-onetofour-item-card.html">
+<link rel="import" href="../../bower_components/cc-art-craft-onetofour-card/cc-art-craft-onetofour-card.html">
+<link rel="import" href="../../bower_components/cc-music-onetofour-card/cc-music-onetofour-card.html">
+<link rel="import" href="../../bower_components/cc-fa-science-fivetoeight-card/cc-fa-science-fivetoeight-card.html">
+
+
 
 
 <link rel="import" href="../home-page/home-page.html">
@@ -43,9 +47,17 @@
         <section data-category="cc-evs-onetofour-item-card">
           <cc-evs-onetofour-item-card></cc-evs-onetofour-item-card>
         </section>
-        <section data-category="cc-computer-onetofour-card">
-          <cc-computer-onetofour-card></cc-computer-onetofour-card>
+        <section data-category="cc-art-craft-onetofour-card">
+          <cc-art-craft-onetofour-card></cc-art-craft-onetofour-card>
         </section>
+         <section data-category="cc-music-onetofour-card">
+          <cc-music-onetofour-card></cc-music-onetofour-card>
+        </section>
+         <section data-category="cc-fa-science-fivetoeight-card">
+          <cc-fa-science-fivetoeight-card></cc-fa-science-fivetoeight-card>
+        </section>
+
+
       </iron-pages>
     </div>
 
@@ -55,7 +67,7 @@
   Polymer({
   is: "app-card",
   ready: function() {
-   this.page='cc-evs-onetofour-item-card';   
+   this.page='cc-fa-science-fivetoeight-card';   
    var name=sessionStorage.getItem("userinfo");
    var currpage=localStorage.getItem("curr_sess_page");
    if(name=="Transport Admin")  {
